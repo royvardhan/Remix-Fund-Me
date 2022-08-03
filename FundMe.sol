@@ -10,6 +10,8 @@ contract FundMe {
 
     address public owner;
 
+    // address public immutable i_owner; // same functionality as the above line but saves on gas
+
     constructor () {
        owner = msg.sender;
     }
@@ -20,6 +22,7 @@ contract FundMe {
     }
 
     uint256 public minUsd = 50 * 1e18;
+    // uint256 public constant minUsd = 50 * 1e18; // Added constant to decrease gas fees at the time of deployment OR viewing the variable.
     address[] public funders;
     mapping (address => uint256) public addressToAmountFunded;
     
