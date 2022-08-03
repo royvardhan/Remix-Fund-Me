@@ -6,6 +6,8 @@ import "./AggregatorV3Interface.sol";
 
 // eth:usd 0x8A753747A1Fa494EC906cE90E9f37563A8AF630e ChainLink Datafeed Rinkeby
 
+error NotOwner() // alternative to *require - check modifier onlyOnwer
+
 contract FundMe {
 
     address public owner;
@@ -17,7 +19,8 @@ contract FundMe {
     }
 
     modifier onlyOwner {
-        require(msg.sender == owner, "Only the owner can do this");
+        // require(msg.sender == owner, "Only the owner can do this"); // this is better but not gas efficient
+        if (msg.sender != owner) {revert NotOnwer();} // // alternative to *require - check error NotOwner() - saves gas
         _;
     }
 
