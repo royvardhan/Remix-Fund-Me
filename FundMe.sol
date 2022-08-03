@@ -25,7 +25,7 @@ contract FundMe {
     }
 
     uint256 public minUsd = 50 * 1e18;
-    // uint256 public constant minUsd = 50 * 1e18; // Added constant to decrease gas fees at the time of deployment OR viewing the variable.
+    // uint256 public constant minUsd = 50 * 1e18; // Added 'constant' to decrease gas fees at the time of deployment OR while viewing the variable.
     address[] public funders;
     mapping (address => uint256) public addressToAmountFunded;
     
