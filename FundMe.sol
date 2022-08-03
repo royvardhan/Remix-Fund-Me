@@ -62,4 +62,12 @@ contract FundMe {
         // require(callSuccess, "Call failed");       // This is the recommended way                                  // withdrawing using the CALL method
 
     }
+
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
 }
