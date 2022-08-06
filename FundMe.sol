@@ -60,7 +60,18 @@ contract FundMe {
 
         // (bool callSuccess, bytes memory dataReturned) = payable(msg.sender).call{value: address(this).balance}("") // withdrawing using the CALL method
         // require(callSuccess, "Call failed");       // This is the recommended way                                  // withdrawing using the CALL method
+    }
 
+    function cheaperWithdraw()public payable onlyOwner{
+        address[] memory newFunders = funders;
+        for (uint funderIndex = 0; funderIndex < funders.length; funderIndex++) {
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
+        funders = new address[](0); // resetting the funders array to zero length
+        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("") // withdrawing using the CALL method
+        require(callSuccess, "Call failed");       // This is the recommended way                                  // withdrawing using the CALL method
+    }
     }
 
     receive() external payable {
