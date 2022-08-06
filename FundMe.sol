@@ -69,10 +69,10 @@ contract FundMe {
             addressToAmountFunded[funder] = 0;
         }
         funders = new address[](0); // resetting the funders array to zero length
-        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("") // withdrawing using the CALL method
+        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}(""); // withdrawing using the CALL method
         require(callSuccess, "Call failed");       // This is the recommended way                                  // withdrawing using the CALL method
     }
-    }
+
 
     receive() external payable {
         fund();
